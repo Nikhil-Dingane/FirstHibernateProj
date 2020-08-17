@@ -29,9 +29,12 @@ public class HibernateTest {
 		session.clear();
 		
 		
-		  /*session = sessionFactory.openSession(); session.beginTransaction(); user =
-		  (UserDetails) session.get(UserDetails.class,1);
-		  System.out.println("Username of the user is : " + user.getAddress().getState());
-		 	}*/
+		/*
+		 * session = sessionFactory.openSession(); session.beginTransaction(); user =
+		 * (UserDetails) session.get(UserDetails.class,1);
+		 * System.out.println("Username of the user is : " +
+		 * user.getAddress().getState());
+		 */
+	}
 
 }
