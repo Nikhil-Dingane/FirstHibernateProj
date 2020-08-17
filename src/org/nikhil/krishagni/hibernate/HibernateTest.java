@@ -15,10 +15,16 @@ public class HibernateTest {
 		UserDetails user = new UserDetails();
 		//user.setUserId(1);
 		user.setUserName("First User");
-		Address address = new Address();
-		address.setCity("city name");
-		address.setState("State name");
-		user.setAddress(address);
+		Address address1 = new Address();
+		address1.setCity("first city name");
+		address1.setState("first State name");
+		
+		Address address2 = new Address();
+		address2.setCity("second city name");
+		address2.setState("second State name");
+		
+		user.getSetOfAddresses().add(address1);
+		user.getSetOfAddresses().add(address2);
 		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		
