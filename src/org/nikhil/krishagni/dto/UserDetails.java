@@ -20,6 +20,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -38,7 +39,7 @@ public class UserDetails {
 	@Id @GeneratedValue
 	private int userId;
 	private String userName;
-	@OneToMany(mappedBy = "user")
+	@ManyToMany
 	private Collection<Vehicle> vehicles = new ArrayList<Vehicle>();
 	
 	public Collection<Vehicle> getVehicles() {

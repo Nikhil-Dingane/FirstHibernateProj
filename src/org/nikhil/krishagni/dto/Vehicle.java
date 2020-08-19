@@ -4,22 +4,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 public class Vehicle {
 	@Id@GeneratedValue
 	private int vehicleId;
 	private String vehicleName;
-	@ManyToOne
-	@JoinColumn(name = "USER_ID")
-	private UserDetails user;
+	@ManyToMany(mappedBy = "vehicles")
+	private Collection<UserDetails> users = new ArrayList<UserDetails>();
 	
-	public UserDetails getUser() {
-		return user;
+	public Collection<UserDetails> getUsers() {
+		return users;
 	}
-	public void setUser(UserDetails user) {
-		this.user = user;
+	public void setUsers(Collection<UserDetails> users) {
+		this.users = users;
 	}
 	public int getVehicleId() {
 		return vehicleId;
