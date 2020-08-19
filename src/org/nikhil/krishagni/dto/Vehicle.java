@@ -18,17 +18,6 @@ public class Vehicle {
 	@Id@GeneratedValue
 	private int vehicleId;
 	private String vehicleName;
-	@ManyToOne
-	@NotFound(action = NotFoundAction.IGNORE)
-	private UserDetails user;
-	
-	
-	public UserDetails getUser() {
-		return user;
-	}
-	public void setUser(UserDetails user) {
-		this.user = user;
-	}
 	public int getVehicleId() {
 		return vehicleId;
 	}

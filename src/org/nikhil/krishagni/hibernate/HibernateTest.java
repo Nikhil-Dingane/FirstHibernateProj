@@ -24,16 +24,15 @@ public class HibernateTest {
 		user.getVehicles().add(vehicle);
 		user.getVehicles().add(vehicle2);
 		
-		vehicle.getUsers().add(user);
-		vehicle2.getUsers().add(user);
 		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();;
-		session.save(user);
-		session.save(vehicle);
-		session.save(vehicle2);
+		session.persist(user);
+		/*
+		 * session.save(user); session.save(vehicle); session.save(vehicle2);
+		 */
 		session.getTransaction().commit();
 		session.close();
 		
