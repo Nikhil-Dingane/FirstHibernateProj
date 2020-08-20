@@ -55,6 +55,8 @@
         <!-- Names the annotated entity class -->
         <mapping class="org.nikhil.krishagni.dto.UserDetails"/>
         <mapping class="org.nikhil.krishagni.dto.Vehicle"/>
+        <mapping class="org.nikhil.krishagni.dto.TwoWheeler"/>
+        <mapping class="org.nikhil.krishagni.dto.FourWheeler"/>
 
     </session-factory>
 

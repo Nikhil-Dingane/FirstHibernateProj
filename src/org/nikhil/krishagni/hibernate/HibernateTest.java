@@ -4,32 +4,34 @@ package org.nikhil.krishagni.hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.nikhil.krishagni.dto.FourWheeler;
+import org.nikhil.krishagni.dto.TwoWheeler;
 import org.nikhil.krishagni.dto.UserDetails;
 import org.nikhil.krishagni.dto.Vehicle;
 
 public class HibernateTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		UserDetails user = new UserDetails();
-		//user.setUserId(1);
-		user.setUserName("First User");
 		
 		Vehicle vehicle = new Vehicle();
 		vehicle.setVehicleName("Car");
 		
-		Vehicle vehicle2 = new Vehicle();
-		vehicle2.setVehicleName("Jeep");
+		TwoWheeler bike = new TwoWheeler();
+		bike.setVehicleName("Bike");
+		bike.setSteeringHandle("Bike steering handle");
 		
-		user.getVehicles().add(vehicle);
-		user.getVehicles().add(vehicle2);
+		FourWheeler car = new FourWheeler();
+		car.setVehicleName("Porsche");
+		car.setSteeringWheel("Porsche Sterring Wheel");
 		
 		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		
 		Session session = sessionFactory.openSession();
-		session.beginTransaction();;
-		session.persist(user);
+		session.beginTransaction();
+		session.save(vehicle);
+		session.save(bike);
+		session.save(car);
 		/*
 		 * session.save(user); session.save(vehicle); session.save(vehicle2);
 		 */
