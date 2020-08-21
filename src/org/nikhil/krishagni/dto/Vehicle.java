@@ -11,9 +11,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Vehicle {
-	@Id @GeneratedValue(strategy=GenerationType.TABLE)
+	@Id @GeneratedValue
 	private int vehicleId;
 	private String vehicleName;
 	public int getVehicleId() {
