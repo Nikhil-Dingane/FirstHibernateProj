@@ -21,10 +21,16 @@ public class HibernateTest {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		for(int i = 0 ; i < 10 ; i++) {
-			UserDetails user = (UserDetails)session.get(UserDetails.class, i + 1);
-			System.out.print(user.getUserId() + "\t" + user.getUserName() + "\n");
-		}
+		UserDetails user = new UserDetails();
+		user.setUserId(4);
+		user.setUserName("Updated username");
+		
+		session.update(user);
+		
+		user = new UserDetails();
+		user.setUserId(1);
+		
+		session.delete(user);
 		
 		session.getTransaction().commit();
 		session.close();
