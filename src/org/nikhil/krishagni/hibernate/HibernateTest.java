@@ -13,7 +13,7 @@ public class HibernateTest {
 
 	public static void main(String[] args) {
 		
-		//We are not going to save this object in the database hence this the transient object
+		
 		UserDetails user = new UserDetails();
 		user.setUserName("The user");		
 		
@@ -22,7 +22,13 @@ public class HibernateTest {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		//session.save(user);
+		//saving the object to database 
+		session.save(user);
+		
+		//update the username of the user without closing the session 
+		//This will get auto detected by the hibernate and hibernate will update this in the table because
+		//this is the persistent object.
+		user.setUserName("Update name");
 		
 		session.getTransaction().commit();
 		session.close();
