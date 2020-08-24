@@ -40,15 +40,7 @@ public class UserDetails {
 	@Id @GeneratedValue
 	private int userId;
 	private String userName;
-	@OneToMany(cascade = CascadeType.PERSIST)
-	private Collection<Vehicle> vehicles = new ArrayList<Vehicle>();
 	
-	public Collection<Vehicle> getVehicles() {
-		return vehicles;
-	}
-	public void setVehicles(Collection<Vehicle> vehicles) {
-		this.vehicles = vehicles;
-	}
 	public int getUserId() {
 		return userId;
 	}
