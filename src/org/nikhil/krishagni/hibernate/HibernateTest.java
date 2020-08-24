@@ -13,24 +13,16 @@ public class HibernateTest {
 
 	public static void main(String[] args) {
 		
-		
-		
+		//We are not going to save this object in the database hence this the transient object
+		UserDetails user = new UserDetails();
+		user.setUserName("The user");		
 		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		UserDetails user = new UserDetails();
-		user.setUserId(4);
-		user.setUserName("Updated username");
-		
-		session.update(user);
-		
-		user = new UserDetails();
-		user.setUserId(1);
-		
-		session.delete(user);
+		//session.save(user);
 		
 		session.getTransaction().commit();
 		session.close();
