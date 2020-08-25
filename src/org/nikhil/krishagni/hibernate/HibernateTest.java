@@ -1,6 +1,10 @@
 package org.nikhil.krishagni.hibernate;
 
 
+import java.util.Collection;
+
+import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -9,32 +13,34 @@ import org.nikhil.krishagni.dto.TwoWheeler;
 import org.nikhil.krishagni.dto.UserDetails;
 import org.nikhil.krishagni.dto.Vehicle;
 
+import com.mysql.cj.Query;
+
+import antlr.collections.List;
+
 public class HibernateTest {
 
 	public static void main(String[] args) {
-		
-		
-		UserDetails user = new UserDetails();
-		user.setUserName("The user");		
+			
 		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		//saving the object to database 
-		session.save(user);
-
+		UserDetails user = (UserDetails)session.get(UserDetails.class, 2);
 		
 		session.getTransaction().commit();
 		session.close();
-		
-		//I am changing the object after closing the session
-		///Hence it will not get reflected in the database because
-		//This is the detached object.
-		user.setUserName("Update name");
 
+		user.setUserName("Updated user naame after session close");
 		
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		session.update(user);
+		
+		session.getTransaction().commit();
+		session.clear();
 	}
 
 }
