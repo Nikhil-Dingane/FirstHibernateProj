@@ -35,8 +35,7 @@ public class HibernateTest {
 		 */
 		
 		Criteria criteria = session.createCriteria(UserDetails.class);
-		criteria.add(Restrictions.eq("userName","User6"))
-				.add(Restrictions.ge("userId", 5));
+		criteria.add(Restrictions.or(Restrictions.ge("userId",1),Restrictions.le("userId",7)));
 			
 		
 		List<UserDetails> users = (List<UserDetails>)criteria.list();
