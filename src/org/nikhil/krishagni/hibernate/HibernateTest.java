@@ -25,7 +25,9 @@ public class HibernateTest {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		Query query= session.createQuery("select userName from UserDetails");
+		String minUser = "5 or 1=1";
+		
+		Query query= session.createQuery("select userName from UserDetails where userId>" + minUser);
 		
 		query.setFirstResult(5);
 		query.setMaxResults(4);
