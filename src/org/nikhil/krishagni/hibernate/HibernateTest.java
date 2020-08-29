@@ -1,6 +1,7 @@
 package org.nikhil.krishagni.hibernate;
 
 
+import java.text.CharacterIterator;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,8 +36,7 @@ public class HibernateTest {
 		 */
 		
 		Criteria criteria = session.createCriteria(UserDetails.class);
-		criteria.add(Restrictions.or(Restrictions.ge("userId",1),Restrictions.le("userId",7)));
-			
+		criteria.add(Restrictions.or(Restrictions.between("userId", 1, 4), Restrictions.between("userId", 7, 9)));
 		
 		List<UserDetails> users = (List<UserDetails>)criteria.list();
 		
@@ -45,7 +45,7 @@ public class HibernateTest {
 		
 		
 		for(UserDetails user:users) {
-			System.out.println(user.getUserName());
+			System.out.println(user.getUserId() + "\t" +user.getUserName());
 		}
 	}
 
