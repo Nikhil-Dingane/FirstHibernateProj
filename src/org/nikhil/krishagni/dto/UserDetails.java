@@ -23,6 +23,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -38,7 +39,8 @@ import org.hibernate.annotations.Type;
 
 
 @Entity
-@NamedQuery(name = "UserDetails.byId",query = "from UserDetails where userId=?")
+@NamedQuery(name = "UserDetails.byId",query = "from UserDetails where userId>?")
+@NamedNativeQuery(name = "UserDetails.byName", query = "select * from User_Details where userName=?",resultClass = UserDetails.class)
 @org.hibernate.annotations.Entity(selectBeforeUpdate = true)
 @Table(name = "USER_DETAILS")
 public class UserDetails {

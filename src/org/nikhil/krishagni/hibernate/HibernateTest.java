@@ -27,8 +27,8 @@ public class HibernateTest {
 		
 		String minUser = "5";
 		
-		Query query= session.getNamedQuery("UserDetails.byId");
-		query.setInteger(0, 2);
+		Query query= session.getNamedQuery("UserDetails.byName");
+		query.setString(0,"User6");
 		
 		List<UserDetails> users = (List<UserDetails>)query.list();
 		
