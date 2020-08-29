@@ -27,9 +27,9 @@ public class HibernateTest {
 		
 		String minUser = "5";
 		
-		Query query= session.createQuery("select userName from UserDetails where userId>? or userName=?");
-		query.setInteger(0,Integer.parseInt(minUser));
-		query.setString(1, "Update name");
+		Query query= session.createQuery("select userName from UserDetails where userId>:userId or userName=:userName");
+		query.setInteger("userId",Integer.parseInt(minUser));
+		query.setString("userName", "Update name");
 		
 		query.setFirstResult(5);
 		query.setMaxResults(4);
