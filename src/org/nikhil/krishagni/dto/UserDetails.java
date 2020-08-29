@@ -39,8 +39,8 @@ import org.hibernate.annotations.Type;
 
 
 @Entity
-@NamedQuery(name = "UserDetails.byId",query = "from UserDetails where userId>?")
-@NamedNativeQuery(name = "UserDetails.byName", query = "select * from User_Details where userName=?",resultClass = UserDetails.class)
+//@NamedQuery(name = "UserDetails.byId",query = "from UserDetails where userId>?")
+//@NamedNativeQuery(name = "UserDetails.byName", query = "select * from User_Details where userName=?",resultClass = UserDetails.class)
 @org.hibernate.annotations.Entity(selectBeforeUpdate = true)
 @Table(name = "USER_DETAILS")
 public class UserDetails {
