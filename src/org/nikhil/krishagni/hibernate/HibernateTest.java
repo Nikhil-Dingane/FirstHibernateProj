@@ -27,21 +27,17 @@ public class HibernateTest {
 		
 		String minUser = "5";
 		
-		Query query= session.createQuery("select userName from UserDetails where userId>:userId or userName=:userName");
-		query.setInteger("userId",Integer.parseInt(minUser));
-		query.setString("userName", "Update name");
+		Query query= session.getNamedQuery("UserDetails.byId");
+		query.setInteger(0, 2);
 		
-		query.setFirstResult(5);
-		query.setMaxResults(4);
-		
-		List<String> userNames = (List<String>)query.list();
+		List<UserDetails> users = (List<UserDetails>)query.list();
 		
 		session.getTransaction().commit();
 		session.clear();
 		
 		
-		for(String userName:userNames) {
-			System.out.println(userName);
+		for(UserDetails user:users) {
+			System.out.println(user.getUserName());
 		}
 	}
 
