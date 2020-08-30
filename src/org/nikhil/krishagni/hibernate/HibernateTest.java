@@ -13,6 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.nikhil.krishagni.dto.FourWheeler;
 import org.nikhil.krishagni.dto.TwoWheeler;
@@ -37,17 +38,23 @@ public class HibernateTest {
 		 */
 		
 		Criteria criteria = session.createCriteria(UserDetails.class);
-		criteria.addOrder(Order.desc("userId"));
+		//criteria.addOrder(Order.desc("userId"));
+		criteria.setProjection(Projections.property("userId"));
 		
-		List<UserDetails> users = (List<UserDetails>)criteria.list();
-		
-		session.getTransaction().commit();
-		session.clear();
-		
-		
-		for(UserDetails user:users) {
-			System.out.println(user.getUserId() + "\t" +user.getUserName());
+		List<Integer> users1 = (List<Integer>)criteria.list();
+
+		for (int i : users1) {
+			System.out.println(i);
 		}
+		/*
+		 * List<UserDetails> users = (List<UserDetails>)criteria.list();
+		 * 
+		 * session.getTransaction().commit(); session.clear();
+		 * 
+		 * 
+		 * for(UserDetails user:users) { System.out.println(user.getUserId() + "\t"
+		 * +user.getUserName()); }
+		 */
 	}
 
 }
