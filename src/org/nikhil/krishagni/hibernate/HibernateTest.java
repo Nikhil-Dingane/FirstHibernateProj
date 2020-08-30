@@ -12,6 +12,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.nikhil.krishagni.dto.FourWheeler;
 import org.nikhil.krishagni.dto.TwoWheeler;
@@ -36,7 +37,7 @@ public class HibernateTest {
 		 */
 		
 		Criteria criteria = session.createCriteria(UserDetails.class);
-		criteria.add(Restrictions.or(Restrictions.between("userId", 1, 4), Restrictions.between("userId", 7, 9)));
+		criteria.addOrder(Order.desc("userId"));
 		
 		List<UserDetails> users = (List<UserDetails>)criteria.list();
 		
