@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
 
+import org.apache.commons.collections.keyvalue.TiedMapEntry;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -29,19 +30,21 @@ public class HibernateTest {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 
-		UserDetails user = (UserDetails)session.get(UserDetails.class,2);
-		user.setUserName("Second user");
-
-		//List<UserDetails> users = (List<UserDetails>) criteria.list();
+		Query query = session.createQuery("from UserDetails where userId=2");
+		//tells that save the results of the query in the cache 
+		query.setCacheable(true);
+		List<UserDetails> users = (List<UserDetails>) query.list();
 
 		session.getTransaction().commit();
 		session.clear();
 		
 		Session session2 = sessionFactory.openSession();
 		session2.beginTransaction();
-		
-		UserDetails user2 = (UserDetails)session.get(UserDetails.class,2);
-		System.out.println(user2.getUserName());
+
+		Query query2 = session2.createQuery("from UserDetails where userId=2");
+		//it also tells that first check the query is in the cache
+		query2.setCacheable(true);
+		List<UserDetails> users2 = (List<UserDetails>) query2.list();
 		
 		session2.getTransaction().commit();
 		session2.close();
