@@ -9,6 +9,7 @@ import java.util.jar.Attributes.Name;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -33,6 +34,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -41,6 +44,8 @@ import org.hibernate.annotations.Type;
 @Entity
 //@NamedQuery(name = "UserDetails.byId",query = "from UserDetails where userId>?")
 //@NamedNativeQuery(name = "UserDetails.byName", query = "select * from User_Details where userName=?",resultClass = UserDetails.class)
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 @org.hibernate.annotations.Entity(selectBeforeUpdate = true)
 @Table(name = "USER_DETAILS")
 public class UserDetails {

@@ -30,18 +30,21 @@ public class HibernateTest {
 		session.beginTransaction();
 
 		UserDetails user = (UserDetails)session.get(UserDetails.class,2);
-		System.out.println(user.getUserName());
 		user.setUserName("Second user");
-		System.out.println(user.getUserName());
-
-		UserDetails user2 = (UserDetails)session.get(UserDetails.class,2);
-		System.out.println(user2.getUserName());
-
 
 		//List<UserDetails> users = (List<UserDetails>) criteria.list();
 
 		session.getTransaction().commit();
 		session.clear();
+		
+		Session session2 = sessionFactory.openSession();
+		session2.beginTransaction();
+		
+		UserDetails user2 = (UserDetails)session.get(UserDetails.class,2);
+		System.out.println(user2.getUserName());
+		
+		session2.getTransaction().commit();
+		session2.close();
 
 		/*
 		 * for (UserDetails user : users) { System.out.println(user.getUserId() + "\t" +
